@@ -1,0 +1,39 @@
+
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "One Dark Pro",
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 12,
+    "editor.fontWeight": "normal",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "explorer.confirmDelete": false,
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "php.validate.executablePath": "C://xampp//php//php.exe",
+    "explorer.confirmDragAndDrop": false,
+    "files.autoSave": "afterDelay",
+    "settingsSync.ignoredExtensions": [
+    
+    ],
+    "[java]": {
+
+        "editor.suggest.snippetsPreventQuickSuggestions": false
+    },
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-17",
+            "path": "C:\\Program Files\\Java\\jdk-17.0.3.1",
+            "default": true
+        }
+    ],
+    "window.zoomLevel": 1,
+    "tabnine.experimentalAutoImports": true,
+    "workbench.colorCustomizations": {
+    
+    },
+    "debug.javascript.autoAttachFilter": "always"

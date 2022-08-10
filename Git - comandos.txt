@@ -1,0 +1,57 @@
+Comandos Git - 
+
+https://git-school.github.io/visualizing-git/ -> site para melhor visualização do que acontece ao fazer novos comandos
+https://devhints.io/git-log -> excelente site para dicas de codigos
+
+git init -> inicia um repositório
+git init --bare -> inicia um repositorio puro, que só contem as alterações dos arquivos (repositorio remoto)
+git status -> mostra o estado do nosso repositório, ou seja, quais arquivos foram alterados
+git add NOMEARQUIVO -> para adicionar um unico arquivo no monitoramento do git
+git add . -> para adicionar todos
+git rm NOMEARQUIVO para remover o monitoramento do git naquele arquivo
+git commit -m "mensagem de envio -> resumo descritivo"
+git log -> abre o historico dos commit, inclusive com o hash individual de cada commit.
+git log --oneline
+git log -p -> vizualiza o que foi alterado commit a commit
+git log --graph
+git config --local -> altera para este projeto
+git config --global -> altera para todos
+.gitignore -> arquivo especial onde todos os arquivos cujos nomes estão inseridos no .gitignore o git vai ler e ignorar.
+git remote -> lista todos os repositorios remotos
+git remote add NOME CAMINHO -> adiciona um repositório remoto de nome NOME e indicando o CAMINHO do repositorio
+git remote -v mostra o endereco do repositorio NOME
+git clone CAMINHO NOME-DA-PASTA -> traz pela primeira vez todos os dados de um repositorio remoto para nosso repositorio local com o NOME-DA-PASTA que escolhermos
+git push NOME-REPOSITORIO-LOCAL NOME-DO-REPOSISITORIO-DESTINO(OU RAMO) ( Ex.:master)
+git pull NOME-REPOSITORIO-REMOTO BRANCH -> traz od dados de um repositorio remoto para um local
+git branch NOME-BRANCH -> para cricar uma branch para melhor controlar o versionamento do projeto
+git checkout NOME-DA-BRANCH -> vc muda para aquela branch existentes (suas alteracaos vao pra 'nova')
+git checkout -b NOME-BRANCH -> vc cria e vai diretamente pra a branch criada
+git checkout -- NOME-ARQUIVO-DESFAZER -> serve pra gente navegar em estados do nosso repositorio e descartar as alterações ainda nao commitadas
+
+
+git merge NOME-BRANCH-A-SER-JUNTADA -> vc une o trabalho desenvolvido a partir da branch indicada (sem ser aprincipal) - dai cria-se um commit de merge - para salvar e confirmar devemos digitar :x e ENTER (dois pontos, x , ENTER)
+
+git rebase NOME-BRANCH-A-SER-JUNTADA -> pega os commits da branch a ser juntada na master, deixando com o log tenha em fluxo todos os commits das branchs, ou seja, ele atualiza a master em uma unica linha, sem merges
+
+git revert HASH-DE-UM-COMMIT -> desfaz o commit informado. Voce pode ver qual o hash no git log
+
+git stash -> vc salva as alteracoes em um local temporario sem gerar um log pra isso, permitindo que, por exemplo, vc faca outros trabalhos e depois voltar aquele stash.
+git slash list -> lista o que esta salvo la
+git stash apply NUMERO-DA-STASH ->vc traz ela para o trabalho
+git stash drop -> para remover
+git stash pop -> tira a ultima alteracao salva e traz novamente pra trilha e remove do stash
+
+git checkout HASH-DO-COMMIT -> retorna o codigo ao estado daquele hash
+
+git diff -> mostra a diferenca de um arquivo que estou editando e ainda nao foi iadd pro commit o codigo ja commitado
+
+git diff HASH1..HASH2 -> mostra todas as alterações que foram feitas do HASH1 até (significado dos '..') o HASH2
+
+Uma tag marca um ponto na aplicação, não modificável, servindo pra marcar entregas (releases) de um sistema em desenvolvimento;
+git tag -a NOME-TAG-V0.1.0 -m "MENSAGEM" -> o'-a' cria a tag,o '-m' registra a mensagem. sugeresse v0.1.0 de inicio
+git tag -> mostra todas as tags disponíveis
+
+git push LOCAL-OU-ORIGIN v0.1.0 -> envia a tag ccriando uma release no github
+
+git branch -m master main
+git push -u origin main
