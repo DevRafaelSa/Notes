@@ -2,6 +2,41 @@ Introduction to Ruby - Text with directions, references and code
 Ruby resource:
 
 www.ruby-lang.org
+rubygems.org - site que concetra todos os pacotes de codigos que os usuarios rails estão hospedados e você pode simplesmente fazer o download u usá-los para o seu aplicativo conforme necessário. (TBM PELO https://github.com/rails/rails)
+
+Rails overview:
+
+https://guides.rubyonrails.org/
+
+https://rubyonrails.org/
+
+https://weblog.rubyonrails.org/
+
+Creator of Rails: David Heinemeier Hansson
+
+https://dhh.dk/
+
+Ruby meetups:
+
+https://www.meetup.com/topics/ruby/
+
+Online code repository hosting services:
+
+https://github.com/
+
+https://bitbucket.org/
+
+Devise gem GitHub repository:
+
+https://github.com/heartcombo/devise
+
+Gems for Ruby and Ruby on Rails:
+
+https://rubygems.org/
+
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
 
 To view current directory:
 
@@ -513,7 +548,13 @@ User.identify_youself # to run this class method you don't need an instance of u
 -------------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------------------
 
-                     
+Getter ans Setters ->usar atributo:
+
+attr_acessor :atrbuto1, :atributo2... (usando notação de símbolos)   
+
+https://www.rubydoc.info/github/codahale/bcrypt-ruby
+
+
 -------------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------------------
