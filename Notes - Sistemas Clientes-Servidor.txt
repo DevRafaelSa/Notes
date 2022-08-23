@@ -1,0 +1,9 @@
+Notes - Sistemas Clientes-Servidor
+
+Aula 19.08
+
+Padrão arquitetural é uma solução genérica a um problema de arquitetura do software.
+
+Padrão de Camadas - ex.: TCP/IP
+para considerar ser em caamadas os papeis devem ser bem especificos e nao pode ser cilicos
+

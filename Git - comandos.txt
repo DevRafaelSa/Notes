@@ -10,20 +10,30 @@ git add NOMEARQUIVO -> para adicionar um unico arquivo no monitoramento do git
 git add . -> para adicionar todos
 git rm NOMEARQUIVO para remover o monitoramento do git naquele arquivo
 git commit -m "mensagem de envio -> resumo descritivo"
+
 git log -> abre o historico dos commit, inclusive com o hash individual de cada commit.
 git log --oneline
 git log -p -> vizualiza o que foi alterado commit a commit
-git log --graph
+git log --graph -> mostra o log detalhado, inclusive com branchs
+
 git config --local -> altera para este projeto
 git config --global -> altera para todos
 .gitignore -> arquivo especial onde todos os arquivos cujos nomes estão inseridos no .gitignore o git vai ler e ignorar.
+
 git remote -> lista todos os repositorios remotos
 git remote add NOME CAMINHO -> adiciona um repositório remoto de nome NOME e indicando o CAMINHO do repositorio
 git remote -v mostra o endereco do repositorio NOME
+
 git clone CAMINHO NOME-DA-PASTA -> traz pela primeira vez todos os dados de um repositorio remoto para nosso repositorio local com o NOME-DA-PASTA que escolhermos
+
 git push NOME-REPOSITORIO-LOCAL NOME-DO-REPOSISITORIO-DESTINO(OU RAMO) ( Ex.:master)
 git pull NOME-REPOSITORIO-REMOTO BRANCH -> traz od dados de um repositorio remoto para um local
+
 git branch NOME-BRANCH -> para cricar uma branch para melhor controlar o versionamento do projeto
+git branch -d NOME-BRANCH -> remove a branch
+Obs.: Se tiver algum conflito, ou sejja, o branch estiver a frente do branch atual, se essa branch que eu for apagar tiver commits a frente do master/main, entao o 'd' deve ser maiúsculo:
+git branch -D NOME-BRANCH
+
 git checkout NOME-DA-BRANCH -> vc muda para aquela branch existentes (suas alteracaos vao pra 'nova')
 git checkout -b NOME-BRANCH -> vc cria e vai diretamente pra a branch criada
 git checkout -- NOME-ARQUIVO-DESFAZER -> serve pra gente navegar em estados do nosso repositorio e descartar as alterações ainda nao commitadas
@@ -36,7 +46,7 @@ git rebase NOME-BRANCH-A-SER-JUNTADA -> pega os commits da branch a ser juntada 
 git revert HASH-DE-UM-COMMIT -> desfaz o commit informado. Voce pode ver qual o hash no git log
 
 git stash -> vc salva as alteracoes em um local temporario sem gerar um log pra isso, permitindo que, por exemplo, vc faca outros trabalhos e depois voltar aquele stash.
-git slash list -> lista o que esta salvo la
+git stash list -> lista o que esta salvo la
 git stash apply NUMERO-DA-STASH ->vc traz ela para o trabalho
 git stash drop -> para remover
 git stash pop -> tira a ultima alteracao salva e traz novamente pra trilha e remove do stash
@@ -55,3 +65,108 @@ git push LOCAL-OU-ORIGIN v0.1.0 -> envia a tag ccriando uma release no github
 
 git branch -m master main
 git push -u origin main
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+TRABALHANDO EM CODIGO ABERTO (OPEN SOURCE) - REALIZANDO UM FORK
+
+Para trabalha em codigo aberto (open source) eu tenho que fazer um fork, algo como uma copia do projeto de alguem para meu repositorio onde agora eu posso fazer as alterações do codigo.
+
+Após fazer o Fork pelo github tem q dar o git remote add origin pra adicionar aquele repositorio que foi forkado no origin e depois dar um git pull origin main 
+
+Faz o pull pra sua maquina, faz as implementacoes, depois commita pra sua branch no git.
+Quando der o push vai dar um erro de permimssão.
+OBS.: O correto aqui seria o sistema pedir o login e a senha do github.
+O windows nao costuma pedir caso ja tenha add algum repositorio, pq ele salva as credenciais. Assim, a solucao sera sempre apagar essas credenciais.
+Caminho: PAINEL DE CONTROLE - CONTAS DE USUARIO - GERENCIADOR DE CREDENCIAIS - CREDENCIAIS DO WINDOWS - LOCALIZAR A DO GITHUB E REMOVER
+
+Para enviar as alterações ao "dono" é preciso faze-lo via pull request (pedido de envio) na pag do Git.
+
+O "dono" agora deve fazer um merge pull request (tbm na pagina git)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+JUNTAR COMMITS (antes do push)
+
+git rebase -i HEAD~3 -> o HEAD indica que é agora e o '~3' que estou querendo juntos os 3 ultimos commits
+outra opção:
+git rebase -i HASH DO COMMIT IMEDIATAMENTE ANTERIOS AOS QUE QUERO JUNTAR -> caso hajja mtos commits assim eh mais interessante
+
+Proximo passo: aparece uma tela meio complexa, mas basicamente tera alguns comandos como "pick" (do antigo pro mais novo de cima pra baixo). Neste caso preciso substituir o "pick" para "s" (de squash, esmagar), com isso ele vai "esmagar/juntar" aquele commit com o aquele que tem o "pick". Assim, ficando apenas um comando com o "pick", ele sera o base. Para salvar deve-se clicar ':x'
+Ele vai pedir uma nova mensagem pro commit. ':x' pra salvar e sair novamente e pronto.
+ppode testar com o git log --online
+depois so dar o git push origin main
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+git cherry-pick HASH-DE-UM-COMMIT -> seleciona a dedo aquele commit para trazer o commit selecionado pro branch que eu estou agora, ou seja, o HEAD
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+SABENDO UM PPONTO EXATO EM QUE UMA ALTERACAO FOI ADICIONADA (fazendo uma busca) - ENCONTRANDO BUGS
+
+
+git bisect start -> para iniciar a busca
+git bisect bad HEAD -> marquei o agora como um dos parâmetros bases
+git bisect good HASH-DO-COMMIT -> informando um estado em que possivelmente estava bom (segundo parametro de busca)
+obs.: se ele nao encontrar o codigo pra ele continuar procurando é o:
+git bisect bad
+obs.: quando ele encontrar o codigo correto basta digitar:
+git bisect good
+OBS3.: Lembrando que isso deve acontecer para cada hash da pesquisa (good ou bad)
+git bisect reset -> para finalizar a busca
+
+git show HASH-COMMIT-ENCONTRADO -> vai mostrar todas as alteracoes feitas naquele commit
+git revert HASH-COMMIT-ENCONTRADO
+Se der conflito no codigo deve-se excluir as linhas para sanar os conflitos e depois:
+git add . ou git add NOME-DO-ARQUIVO
+git commit
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ENCONTRANDO O CULPADO/RESPONSÁVEL
+
+git blame NOME-DO-ARQUIVO -> ele mostra quem foi o responsavel por cada uma das linhas desse arquivo
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+MASTER/MAIN E PRODUÇÃO
+
+Seu trabalho, sua codificação, não deve ser feito no master/main. Não se deve editar código no master. (BOA PRATICA).
+O ideal eh que só vá pra master os commits prontos e testados, prontos para produção.
+
+Branchs:
+
+- development -> branch mais proxima da proxima versão. A partir de qual saem as branches de 
+				feature/FEATURE-QUE-SERA-IMPLEMENTADA e que é junção dessas branchs de features
+
+Quando as junções estiverem mais testado, mais proximos de ir para produção, crio um branch  de release
+
+- release/No-VERSAO-NOVA -> onde a equipe de qualidade testa e faz os consertos
+
+Se for um bug em produção eu preciso resolver a partir da master, criando um novo branch a partir dela
+
+- hotfix/No-VERSAO-EM-CONSERTO -> esse conserto deve ser enviado para a master e para o ambiente de desenvolvimento
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Git Flow - 
+
+Master -> só recebe os commits prontos para produção. A partir desses commits a gente gera as tags.
+			A partir das master existe a branch de desenvolvimento
+			Caso encontremos um erro na master, ou seja, em produção, deve ser criado uma branch a partir da master chamada hotfix
+
+Development -> a partir dela serão criadas as branchs de features, ou seja, de funcionalidades novas, que, após codadas são mandadas de volta para a branch development. Quando a branch de desenvolvimento tiver todas as features nela a gente cria uma branch a partir dela de release 
+
+Features -> onde são desenvolvidas as novas funcionalidades
+
+Hotfix -> onde sao corrigidos os erros em produção. Após corrigdos devem ser enviados para a master e para a development
+
+Release -> quando comeca o processo de lancar uma nova versão. Nela só são corrigidos os bugs relacionados a essa release. Havendo correcoes deve ser enviado para para a development e para a master
+
+
+
+
+
+
+
