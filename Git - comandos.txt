@@ -165,6 +165,37 @@ Hotfix -> onde sao corrigidos os erros em produção. Após corrigdos devem ser 
 Release -> quando comeca o processo de lancar uma nova versão. Nela só são corrigidos os bugs relacionados a essa release. Havendo correcoes deve ser enviado para para a development e para a master
 
 
+---------------------------------------------------------------------------------------------------------------------------------
+
+O Mater/Main deve ser sempre o local onde temos o codigo pronto para producao
+
+Development é a branch onde fica todo o codigo em desenvolvimento
+
+branchs criadas a partir da development são as features que estão sendo desenvolvidas em questão. Ex.: git checkout -b feature/nome-da-feature1, git checkout -b feature/nome-da-feature2... 
+
+quando essas features ficarem prontas é preciso fazer o merge pra development:
+De dentro da developmente:
+git merge feature/nome-da-feature1
+
+Se tiver sido encontrado bug no master/main deve-se abrir uma branch hotfix/v0.1.1 para realizar o conserto. Depois faz o checkoku pra master/main e faz o merge da hotfix. Lembrar de fazer o merge tbm pra branch development
+
+quando a development ficar pronta a release, deve-se criar uma branch a partir da development chamada release/numero-da-versao. Ex.: git checkout -b release/v0.2.0 
+Ela serve para fazer as correções da relese que já foi feita mas veio com bug
+
+Depois de corrigir os bugs faz o checkout pra main/master e solicita o merge da release/v0.2.0
+
+Com tudo incluido se cria a tag para marcar o fi daquela versao e inicio da proxima:
+git tag -a v0.2.0(nome da tag) -m "mensagem indicando o que foi acrescido na versao"
+
+OBS.: nao esquecer de depois de consertar os bugs na branch release... fazer o merge tbm pra development pra mante o cod sempre atualizado.
+
+git checkout -b nome-da-sua-branch
+Com esse comando você cria e já dá checkout.
+
+git push --set-upstream origin nome-da-sua-branch
+E com esse comando vc sobe a branch pro github.
+
+
 
 
 
