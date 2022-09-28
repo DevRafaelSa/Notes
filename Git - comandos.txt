@@ -41,7 +41,7 @@ git checkout -- NOME-ARQUIVO-DESFAZER -> serve pra gente navegar em estados do n
 
 git merge NOME-BRANCH-A-SER-JUNTADA -> vc une o trabalho desenvolvido a partir da branch indicada (sem ser aprincipal) - dai cria-se um commit de merge - para salvar e confirmar devemos digitar :x e ENTER (dois pontos, x , ENTER)
 
-git rebase NOME-BRANCH-A-SER-JUNTADA -> pega os commits da branch a ser juntada na master, deixando com o log tenha em fluxo todos os commits das branchs, ou seja, ele atualiza a master em uma unica linha, sem merges
+git rebase NOME-BRANCH-A-SER-JUNTADA -> pega os commits da branch a ser juntada na master/main, deixando com o log tenha em fluxo todos os commits das branchs, ou seja, ele atualiza a master em uma unica linha, sem merges
 
 git revert HASH-DE-UM-COMMIT -> desfaz o commit informado. Voce pode ver qual o hash no git log
 
@@ -53,7 +53,7 @@ git stash pop -> tira a ultima alteracao salva e traz novamente pra trilha e rem
 
 git checkout HASH-DO-COMMIT -> retorna o codigo ao estado daquele hash
 
-git diff -> mostra a diferenca de um arquivo que estou editando e ainda nao foi iadd pro commit o codigo ja commitado
+git diff -> mostra a diferenca de um arquivo que estou editando e ainda nao foi add pro commit o codigo ja commitado
 
 git diff HASH1..HASH2 -> mostra todas as alterações que foram feitas do HASH1 até (significado dos '..') o HASH2
 
@@ -177,14 +177,14 @@ quando essas features ficarem prontas é preciso fazer o merge pra development:
 De dentro da developmente:
 git merge feature/nome-da-feature1
 
-Se tiver sido encontrado bug no master/main deve-se abrir uma branch hotfix/v0.1.1 para realizar o conserto. Depois faz o checkoku pra master/main e faz o merge da hotfix. Lembrar de fazer o merge tbm pra branch development
+Se tiver sido encontrado bug no master/main deve-se abrir uma branch hotfix/v0.1.1 para realizar o conserto. Depois faz o checkout pra master/main e faz o merge da hotfix. Lembrar de fazer o merge tbm pra branch development;
 
 quando a development ficar pronta a release, deve-se criar uma branch a partir da development chamada release/numero-da-versao. Ex.: git checkout -b release/v0.2.0 
 Ela serve para fazer as correções da relese que já foi feita mas veio com bug
 
 Depois de corrigir os bugs faz o checkout pra main/master e solicita o merge da release/v0.2.0
 
-Com tudo incluido se cria a tag para marcar o fi daquela versao e inicio da proxima:
+Com tudo incluido se cria a tag para marcar o fim daquela versão e inicio da proxima:
 git tag -a v0.2.0(nome da tag) -m "mensagem indicando o que foi acrescido na versao"
 
 OBS.: nao esquecer de depois de consertar os bugs na branch release... fazer o merge tbm pra development pra mante o cod sempre atualizado.
@@ -195,6 +195,13 @@ Com esse comando você cria e já dá checkout.
 git push --set-upstream origin nome-da-sua-branch
 E com esse comando vc sobe a branch pro github.
 
+------------------------------------------------------------------------
+
+Erros no pull e no push
+
+Solução:
+git pull --rebase origin master 
+git push origin master
 
 
 
